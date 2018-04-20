@@ -1,0 +1,28 @@
+it = 1;
+dictionary = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz,.?!""1234567890@#$%^&*()_`~-№[]{}:;+=/\|><АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя'; 
+dic_len = len(dictionary);
+
+while it != 0:
+    print('First step : enter correct data please\n');
+    str1 = str(input('enter string: \n'));
+    str2 = '';
+    choice = int(input('make a choice: \n 1: Encrypt \n 2: Transcript \n 3: exit \n'));
+    if choice == 1:
+        step = int(input('Enter encrypt step: '));
+        for i in range(len(str1)):
+            if str1[i] in dictionary:
+                str2 += dictionary[(dictionary.find(str1[i]) + step) % dic_len];
+            else:
+                str2 += s[i];
+        print(str2);    
+        choice = int(input('make a choice: \n 1: Encrypt \n 2: Transcript \n 3: exit \n')); 
+    if choice == 2:
+        str3 = str2;
+        for i in range(len(dictionary)):
+            str2 = '';
+            for j in str3:
+                str2 += dictionary[(dictionary.find(j) + i) % dic_len];
+            print(i,str2);
+        choice = int(input('make a choice: \n 1: Encrypt \n 2: Transcript \n 3: exit \n'));    
+    if choice == 3:
+        it = 0;
