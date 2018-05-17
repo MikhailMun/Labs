@@ -1,0 +1,74 @@
+import random
+def random_number():
+    i = 0
+    temp = 4
+    num = []
+    str1 = ''
+    tmpnum = random.randint(1000,9999)
+    while tmpnum > 0:
+        num.append(tmpnum % 10)
+        tmpnum = tmpnum // 10
+        num.reverse()
+    if numCheck(num) == True:
+         return num                                                                                    
+    else:
+        return random_number()
+    
+def numCheck(number):
+    if (number.count(number[0]) == 1) and (number.count(number[1]) == 1) and (number.count(number[2]) == 1) and (number.count(number[3]) == 1) :
+        return True
+    else:
+        return False
+
+def user_number():
+    uinput= input("Введите четырёхзначное число ")
+    unumber = []
+    if uinput.isdigit() == False:
+        return user_number()
+    else:
+        for i, item in enumerate(uinput):
+            unumber.append(int(item))
+            b = i;
+    if b != 3:
+        return user_number()
+    if not unumber != True:
+        unumber.clear()
+    if numCheck(unumber) == True:
+        return unumber
+    else:
+        return user_number()
+
+def check(u,n):
+    bulls = 0
+    cows = 0
+    i = 0
+    while i < 4:
+        if  u[i] == n[i]:
+            bulls += 1
+        else:
+            cows += 1;
+        i += 1
+    return bulls, cows
+
+def mainmenu():
+    print('Сделайте выбор\n1:Начать игру\n2:Выход');
+    ch = str(input('Сделайте выбор '));
+    if ch == '1':
+        f = False
+        rand = random_number()
+        while f != True:
+            unum = user_number()
+            bulls, cows = check(unum,rand)
+            print('Быков: ', bulls,'Коров: ', cows)
+            if bulls != 4:
+                unum = user_number()
+                bulls, cows = check(unum,rand)
+                print('Быков: ', bulls,'Коров: ', cows)
+            else:
+                print('Было загадано число', rand)
+                f = True
+    if ch == '2':
+        exit(0);
+
+while True:    
+    mainmenu()
